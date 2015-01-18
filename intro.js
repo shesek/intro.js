@@ -42,6 +42,7 @@
       tooltipPosition: 'bottom',
       /* Next CSS class for tooltip boxes */
       tooltipClass: '',
+      tooltipSpacing: 0,
       /* CSS class that is added to the helperLayer */
       highlightClass: '',
       /* Close introduction when pressing Escape button? */
@@ -463,11 +464,11 @@
     switch (currentTooltipPosition) {
       case 'top':
         tooltipLayer.style.left = '15px';
-        tooltipLayer.style.top = '-' + (tooltipHeight + 10) + 'px';
+        tooltipLayer.style.top = '-' + (tooltipHeight + 10 + this._options.tooltipSpacing) + 'px';
         arrowLayer.className = 'introjs-arrow bottom';
         break;
       case 'right':
-        tooltipLayer.style.left = (_getOffset(targetElement).width + 20) + 'px';
+        tooltipLayer.style.left = (_getOffset(targetElement).width + 20 + this._options.tooltipSpacing) + 'px';
         if (targetOffset.top + tooltipHeight > windowSize.height) {
           // In this case, right would have fallen below the bottom of the screen.
           // Modify so that the bottom of the tooltip connects with the target
@@ -489,7 +490,7 @@
         } else {
           arrowLayer.className = 'introjs-arrow right';
         }
-        tooltipLayer.style.right = (targetOffset.width + 20) + 'px';
+        tooltipLayer.style.right = (targetOffset.width + 20 + this._options.tooltipSpacing) + 'px';
 
 
         break;
@@ -513,7 +514,7 @@
       case 'bottom-right-aligned':
         arrowLayer.className      = 'introjs-arrow top-right';
         tooltipLayer.style.right  = '0px';
-        tooltipLayer.style.bottom = '-' + (_getOffset(tooltipLayer).height + 10) + 'px';
+        tooltipLayer.style.bottom = '-' + (_getOffset(tooltipLayer).height + 10 + this._options.tooltipSpacing) + 'px';
         break;
       case 'bottom-middle-aligned':
         targetElementOffset = _getOffset(targetElement);
@@ -521,14 +522,14 @@
 
         arrowLayer.className      = 'introjs-arrow top-middle';
         tooltipLayer.style.left   = (targetElementOffset.width / 2 - tooltipOffset.width / 2) + 'px';
-        tooltipLayer.style.bottom = '-' + (tooltipOffset.height + 10) + 'px';
+        tooltipLayer.style.bottom = '-' + (tooltipOffset.height + 10 + this._options.tooltipSpacing) + 'px';
         break;
       case 'bottom-left-aligned':
       // Bottom-left-aligned is the same as the default bottom
       case 'bottom':
       // Bottom going to follow the default behavior
       default:
-        tooltipLayer.style.bottom = '-' + (_getOffset(tooltipLayer).height + 10) + 'px';
+        tooltipLayer.style.bottom = '-' + (_getOffset(tooltipLayer).height + 10 + this._options.tooltipSpacing) + 'px';
         tooltipLayer.style.left = (_getOffset(targetElement).width / 2 - _getOffset(tooltipLayer).width / 2) + 'px';
 
         arrowLayer.className = 'introjs-arrow top';
